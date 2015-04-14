@@ -36,4 +36,16 @@ class QuestionsController < ApplicationController
         render :edit
       end
     end
+
+          def destroy
+
+          @question = Question.find(params[:id])
+          @questions = Question.all
+          @question.destroy
+          if @question.destroy
+            flash[:notice] = "Question was deleted."
+
+          end
+      end
+    
 end
