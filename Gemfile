@@ -29,6 +29,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Include Faker Gem
 gem 'faker'
+# Include Devise Gem 
+gem 'devise'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
