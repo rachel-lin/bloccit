@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
           @question.destroy
           if @question.destroy
             flash[:notice] = "Question was deleted."
-
+            render :index
           end
       end
     
