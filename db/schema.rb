@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419155349) do
+ActiveRecord::Schema.define(version: 20150419182559) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20150419155349) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.integer  "summary_id"
     t.integer  "topic_id"
   end
 
+  add_index "posts", ["summary_id"], name: "index_posts_on_summary_id"
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
@@ -41,6 +43,22 @@ ActiveRecord::Schema.define(version: 20150419155349) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "sumaries", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sumaries", ["body"], name: "index_sumaries_on_body"
+
+  create_table "summaries", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "summaries", ["body"], name: "index_summaries_on_body"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
