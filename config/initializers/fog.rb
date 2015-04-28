@@ -6,4 +6,6 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = ENV['AWS_BUCKET']
   config.fog_public     = true
+
+  storage = Fog::Storage.new(credentials.merge({:region => DEFAULT_REGION}))
 end
