@@ -17,6 +17,23 @@
      <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
    <% end %>
 
+         <% if post.image? %>
+         <div class="form-group">
+           <p>Image that is currently uploaded</p>
+           <%= image_tag( post.image.normal.url ) %>
+         </div>
+       <% end %>
+       
+       <div class="form-group">
+         <%= f.label :image %>
+         <%= f.file_field :image %>
+         <%= f.hidden_field :image_cache %>
+       </div>
+
+      <div class="form-group">
+        <%= f.submit "Update", class: 'btn btn-success' %>
+      </div>
+
 
    <%= form_group_tag(post.errors[:body]) do %>
      <%= f.label :body %>
