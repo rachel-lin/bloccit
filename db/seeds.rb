@@ -49,10 +49,11 @@ posts = Post.all
 # Create Comments
 100.times do
   Comment.create!(
-    post: posts.sample,
+    user: users.sample,
     body: Faker::Lorem.paragraph
     )  
 end
+
 
 =begin
 Comment.find_or_create_by (
