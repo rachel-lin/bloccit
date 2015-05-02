@@ -7,7 +7,9 @@ describe Post do
     # Data is destroyed between tests
     
     before do
-      @post = Post.create(title: 'post title', body: 'post body')
+      user = User.create
+      topic = Topic.create
+      @post = Post.create(title: 'post title', body: 'post bodies must be pretty long.')
       3.times { @post.votes.create(value: 1)}
       2.times { @post.votes.create(value: -1)}
     end
