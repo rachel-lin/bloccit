@@ -18,6 +18,7 @@ class PostsController < ApplicationController
       @topic = Topic.find(params[:topic_id])
       @post = current_user.posts.build(post_params)
       @post.topic = @topic
+        authorize @comment
         authorize @post
         if @post.save
           flash[:notice] = "Post was saved."
