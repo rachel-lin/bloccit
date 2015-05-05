@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20150430095447) do
     t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -28,15 +30,11 @@ ActiveRecord::Schema.define(version: 20150430095447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "summary_id"
     t.integer  "topic_id"
     t.string   "posts"
-    t.integer  "image_id"
-    t.string   "Image"
+    t.string   "image"
   end
 
-  add_index "posts", ["image_id"], name: "index_posts_on_image_id"
-  add_index "posts", ["summary_id"], name: "index_posts_on_summary_id"
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
@@ -47,22 +45,6 @@ ActiveRecord::Schema.define(version: 20150430095447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "sumaries", force: :cascade do |t|
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "sumaries", ["body"], name: "index_sumaries_on_body"
-
-  create_table "summaries", force: :cascade do |t|
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "summaries", ["body"], name: "index_summaries_on_body"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
@@ -92,7 +74,6 @@ ActiveRecord::Schema.define(version: 20150430095447) do
     t.datetime "updated_at"
     t.string   "role"
     t.string   "avatar"
-    t.string   "Image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
