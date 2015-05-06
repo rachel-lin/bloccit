@@ -37,29 +37,19 @@ topics = Topic.all
     )
 end
 
-=begin
-  Post.find_or_create_by (
-  :title => "additional post 1",
-  :body => "additional post 1 content")
-=end
-
 
 posts = Post.all 
 
 # Create Comments
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
     )  
 end
 
-=begin
-Comment.find_or_create_by (
-  :body => "additional post 1 comment")
-=end
 
-# Create an admin user
 
 admin = User.new(
   name: 'Admin User',
