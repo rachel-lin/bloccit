@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
     mount_uploader :avatar, AvatarUploader
 
   has_many :comments
+  has_many :votes, dependent: :destroy
+
 
   def admin?
     role == 'admin'

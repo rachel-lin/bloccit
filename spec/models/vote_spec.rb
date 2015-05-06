@@ -1,21 +1,33 @@
 require 'rails_helper'
 
 describe Vote do
-  describe 'validations' do
-    describe 'value_validation' do
-      it 'only allows -1 or 1 as values' do
-        
+
+  describe "validations" do
+    describe "value validation" do
+      it "only allows -1 or 1 as values" do
         up_vote = Vote.new(value: 1)
-        expect( up_vote.valid? ).to eq(true)
+        expect(up_vote.valid?).to eq(true)
 
         down_vote = Vote.new(value: -1)
-        expect( down_vote.valid? ).to eq(true)
+        expect(down_vote.valid?).to eq(true)
 
         invalid_vote = Vote.new(value: 2)
-        expect( invalid_vote.valid? ).to eq(false)
+        expect(invalid_vote.valid?).to eq(false)
       end
     end
-
-
   end
-end
+
+   describe 'after_save' do
+     it "calls `Post#update_rank` after save" do
+       @user = authenticated_user
+       @post = associated_post
+       sign_in @user
+       vote = Vote.new(value: 1, post: post)
+       expect(post).to receive(:update_rank)
+        vote.save
+     end
+   end
+
+   
+ end
+
