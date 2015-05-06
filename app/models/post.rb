@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
   end
 
   def points
-    votes.sum(:up_votes, :down_votes)
+    votes.sum(:value)
   end
 
   def update_rank

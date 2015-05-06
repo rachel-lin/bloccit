@@ -5,11 +5,7 @@ class VotesController < ApplicationController
 
   def up_vote
 
-    if @vote
-      @vote.update_attribute(:value, 1)
-    else
-      @vote = current_user.votes.create(value: 1 , post: @post)
-    end
+    update_vote!(1)
 
     redirect_to :back
 
@@ -17,11 +13,7 @@ class VotesController < ApplicationController
 
   def down_vote
 
-    if @vote
-      @vote.update_attribute(:value, -1)
-    else
-      @vote = current_user.votes.create(value: -1 , post: @post)
-    end
+   update_vote!(-1)
 
     redirect_to :back
 
@@ -43,7 +35,6 @@ class VotesController < ApplicationController
        authorize @vote, :update?
       @vote.update_attribute(:value, new_value)
     else
-       @vote = current_user.votes.create(value: new_value, post: @post)
        @vote = current_user.votes.build(value: new_value, post: @post)
        authorize @vote, :create?
        @vote.save
