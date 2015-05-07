@@ -4,22 +4,21 @@ describe User do
   
   include TestFactories
 
+  describe "#favorited(post)" do
+    
   before do
-      @post = Post.create(title: 'post title', body: 'post body which is longer than twenty characters')
-      3.times { @post.votes.create(value: 1)}
+      @post = associated_post
+      @user = authenticated_user
     end
 
-  describe "#favorited(post)" do
 
     it "returns `nil` if the user has not favorited the post" do
-      expect( @post.favorited ).to eq(false)
+      expect( @user.favorited(@post) ).to eq(nil)
     end
 
     it "returns the appropriate favourite if it exists" do
-      expect( @post ).to eq()
-    end
-
-    it "returns `nil` if the user has favorited another post" do
+      favorited = @user.favorites.where(post: @post).create
+      expect( @user.favorited(@post) ).to eq(favorited)
     end
 
   end
