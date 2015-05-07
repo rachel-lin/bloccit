@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       @post = current_user.posts.build(post_params)
       @post.topic = @topic
 
-        authorize @comment
+       
         authorize @post
         if @post.save
           @post.create_vote
