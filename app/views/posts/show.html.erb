@@ -10,6 +10,8 @@
        submitted <%= time_ago_in_words(@post.created_at) %> ago by
        <%= @post.user.name %>
      </small>
+
+ <%= render partial: 'favorites/favorite', locals: { post: @post } %>
     <p><%= markdown_to_html @post.body %></p>
 
     <p><%= image_tag(@post.image.normal.url) if @post.image? %></p>
