@@ -6,4 +6,9 @@ FactoryGirl.define do
     password_confirmation "helloworld"
     confirmed_at Time.now
   end
+
+  factory :user_with_posts_and_comments do
+
+  end
 end
+
