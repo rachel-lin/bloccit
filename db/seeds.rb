@@ -29,19 +29,18 @@ topics = Topic.all
 
 
 50.times do
-  Post.create!(
+    post = Post.create!(
     user: users.sample,
     topic: topics.sample,
     title: Faker::Lorem.sentence,
     body:  Faker::Lorem.paragraph
     )
-end
 
-=begin
-  Post.find_or_create_by (
-  :title => "additional post 1",
-  :body => "additional post 1 content")
-=end
+   # set the created_at to a time within the past year
+   post.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
+   post.create_vote
+   post.update_rank
+end
 
 
 posts = Post.all 
@@ -49,17 +48,13 @@ posts = Post.all
 # Create Comments
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
     )  
 end
 
-=begin
-Comment.find_or_create_by (
-  :body => "additional post 1 comment")
-=end
 
-# Create an admin user
 
 admin = User.new(
   name: 'Admin User',

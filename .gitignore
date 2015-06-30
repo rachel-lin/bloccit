@@ -18,3 +18,8 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Carrierwave image
+public/uploads
+
+.DS_Store

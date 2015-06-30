@@ -16,6 +16,12 @@ group :development do
   gem 'rails-erd'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -35,6 +41,14 @@ gem 'devise'
 gem 'figaro', '1.0'
 # Include Pundit Gem
 gem 'pundit'
+# Install Redcarpet Gem
+gem 'redcarpet'
+# Install Image uploader gems
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+# Allow Pagination
+gem 'will_paginate', '~> 3.0.5'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
